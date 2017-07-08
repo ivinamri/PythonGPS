@@ -14,17 +14,16 @@ a = gps.is_open
 print("Port is open: " + str(a) + "\n")
 
 while True:
-  line = gps.readline().decode()
+	line = gps.readline().decode()
 	dataraw = line.split("\r\n")	
 	#data = dataraw[0].split(",")
 	data = line.split(",")
   
-  # Find $GPRMC messages
+  	# Find $GPRMC messages
 	if data[0] == "$GPRMC":
-    
-    # Make sure GPS is active
+		# Make sure GPS is active
 		if data[2] == "A":
-      # GPS Latitude
+			# GPS Latitude
 			latgps = float(data[3])
 			if data[4] == "S":
 				latgps = -latgps
@@ -33,7 +32,7 @@ while True:
 			latmin = latgps - latdeg*100
 			lat = latdeg + (latmin/60)
 			
-      # GPS Longitude
+			# GPS Longitude
 			longps = float(data[5])
 			if data[6] == "W":
 				longps = -longps
@@ -42,10 +41,10 @@ while True:
 			lonmin = longps - londeg*100
 			lon = londeg + (lonmin/60)
 			
-      # Display GPS coordinates
+			# Display GPS coordinates
 			print(str(lat) + ", " + str(lon))
 			
-      # Save current GPS position to KML file. View real-time GPS position updates from Google Earth application.
+			# Save current GPS position to KML file. View real-time GPS position updates from Google Earth application.
 			with open("position.kml", "w") as pos:
 				pos.write("""<?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
