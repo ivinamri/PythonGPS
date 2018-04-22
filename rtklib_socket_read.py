@@ -1,9 +1,5 @@
 # Python v3.6.5
-# Read NMEA output from RTKlib software (using output option: TCP Server, with port 50006)
-# using Socket programming
-# 
-# Developer: Dr. Ivin Amri Musliman
-# Updated: 20 April 2018
+# Read NMEA output from RTKlib software (using output option: TCP Server, with port 50006) via Socket programming
 
 import socket
 import sys, os
@@ -37,9 +33,7 @@ try:
 
 			else:
 				lines = data.decode("utf-8").split("\r\n")
-	
-				# f = open("socks.txt","a+")
-				# f.write(data.decode("utf-8"))
+				
 				try:
 					# dataGPS = lines
 					## If using RTKlib software to output the NMEA, enable the line below, else use the line above.
@@ -147,7 +141,6 @@ try:
 			time.sleep(3)
 			sys.exit(1)
 
-	# f.close()
 	# Close socket connection if False, a.k.a "not connected"
 	client.close()
 
